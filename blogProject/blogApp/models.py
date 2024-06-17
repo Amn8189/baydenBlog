@@ -16,6 +16,9 @@ class Article(models.Model):
     publish_date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['publish_date']
+
     def __str__(self):
         return self.title
     
@@ -23,6 +26,7 @@ class Comment(models.Model):
     name = models.CharField(max_length=50)
     content = models.TextField()
     comment_date = models.DateTimeField(auto_now_add=True)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self):
         return self.content
