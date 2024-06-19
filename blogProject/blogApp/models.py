@@ -1,8 +1,10 @@
 from django.db import models
+from django.contrib import admin
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Author(models.Model):
+class Author(admin.ModelAdmin):
     name = models.CharField(max_length=50)
     age = models.IntegerField()
 
@@ -12,7 +14,7 @@ class Author(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='articles')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
     publish_date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
