@@ -5,3 +5,7 @@ from .models import Article
 def Homepage(request):
     Objects = Article.objects.all()
     return render(request,'homepage.html', {"articles": Objects})
+
+def Article_content(request, id):
+    article = Article.objects.get(pk=id)
+    return render(request, 'content.html', {"article": article})
