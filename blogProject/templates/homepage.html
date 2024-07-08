@@ -5,7 +5,7 @@
     <div class="d-flex flex-column align-items-center">
         {% for a in articles %}
         <a class="btn m-4 rounded-5 py-5 border-white shadow-lg"
-            style="width: 75%; color: #39ff14; background-color: #606060;" ht-target="#maincontent" hx-swap="innerHTML"
+            style="width: 75%; color: #39ff14; background-color: #606060;" ht-target="#maincontent2" hx-swap="outerHTML"
             hx-get="{% url 'article' a.id %}">
             <img class="img-fluid rounded-3 shadow" src="{{a.image.url}}"
                 style="object-fit: cover; object-position: center; " />
