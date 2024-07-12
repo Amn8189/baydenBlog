@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Article, Comment
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def Homepage(request):
@@ -26,3 +27,15 @@ def savedComment(request):
     newComment.save()
     allComments = article_instance.comments.all().order_by("-comment_date")
     return render(request, "comments.html",  {"allComments": allComments})
+
+@login_required
+
+def createArticle(request):
+    title = request.POST.get("title")
+    content = request.POST.get("content")
+    image = request.FILES["image"]
+    author = request.user
+    # SAVE
+    new_article = Article.objects.create(title=title, content=content, image=image, author=author)
+    new_article.save()
+    return render(request, "createArticle.html")
