@@ -31,11 +31,14 @@ def savedComment(request):
 @login_required
 
 def createArticle(request):
-    title = request.POST.get("title")
-    content = request.POST.get("content")
-    image = request.FILES["image"]
-    author = request.user
-    # SAVE
-    new_article = Article.objects.create(title=title, content=content, image=image, author=author)
-    new_article.save()
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        image = request.FILES["image"]
+        author = request.user
+        # SAVE
+        # new_article = Article.objects.create(title=title, content=content, image=image, author=author)
+        # new_article.save()
+        print(image)
     return render(request, "createArticle.html")
+    
