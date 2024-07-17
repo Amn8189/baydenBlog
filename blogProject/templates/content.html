@@ -1,10 +1,13 @@
-<p class="text-white">{{article.content}}</p>
+{{article.content | safe}}
+
+
 <div>
     <form>
         {% csrf_token %}
         <input name="comment" class="form-control" placeholder="Leave a comment..." />
         <input name="article_id " type="hidden" value="{{ article.id }}" id="article_id" />
-        <button class="btn btn-primary rounded-4" hx-post="{% url 'savedComment' %}" hx-target="#allComments" hx-swap="innerHTML">Submit</button>
+        <button class="btn btn-primary rounded-4" hx-post="{% url 'savedComment' article.id %}" hx-target="#allComments"
+            hx-swap="innerHTML">Submit</button>
     </form>
 
     <div id="allComments">
