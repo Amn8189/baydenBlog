@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Homepage, Article_content, search, savedComment, createArticle
+from .views import Homepage, Article_content, search, savedComment, createArticle, updateArticle
 
 urlpatterns = [
     path('', Homepage, name="homepage"),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('search/', search, name="search"),
     path('savedComment/<int:id>', savedComment, name="savedComment"),
     path('createArticle/', createArticle, name="createArticle"),
+    path('updateArticle/<int:id>', updateArticle, name="updateArticle")
 ]

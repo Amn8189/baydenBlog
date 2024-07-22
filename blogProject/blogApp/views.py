@@ -39,3 +39,17 @@ def createArticle(request:HttpRequest):
         new_article.save()
     return render(request, "createArticle.html")
     
+def updateArticle(request, id):
+    # Fetch the artcle being updated
+    article = Article.objects.get(pk=id)
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        image = request.FILES["image"]
+        # Re-write the content with new content
+        article.title = title
+        article.content = content
+        article.image = image
+        # Save
+        article.save()
+    return render(request, "updateArticle.html", {"article": article})
