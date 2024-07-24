@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Article, Comment
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
+from django.shortcuts import redirect
 
 # Create your views here.
 def Homepage(request):
@@ -53,3 +54,10 @@ def updateArticle(request, id):
         # Save
         article.save()
     return render(request, "updateArticle.html", {"article": article})
+
+def deleteArticle(request, id):
+    article_instance = Article.objects.get(pk=id)
+    if request.method == "POST":
+        article_instance.delete()
+        return redirect("homepage")
+    return render(request, "deleteArticle.html", {"article" : article_instance})

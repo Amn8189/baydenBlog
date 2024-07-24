@@ -9,17 +9,26 @@
     <script src="https://unpkg.com/htmx.org@2.0.0"
         integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.2.1/tinymce.min.js" integrity="sha512-zmlLhIesl+uwwzjoUz/izUsSjAMVb/7fH2ffCbJvYLepAvdvAq1T6ev9edZR8jwRKfM0OTaUyFVO1D7wAwXCEw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.2.1/tinymce.min.js"
+        integrity="sha512-zmlLhIesl+uwwzjoUz/izUsSjAMVb/7fH2ffCbJvYLepAvdvAq1T6ev9edZR8jwRKfM0OTaUyFVO1D7wAwXCEw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="text-center" style="background: #404040">
-    <section class="bg-black py-3 shadow-lg">
-        <h1 class="font-monospace" style="color: #39ff14">BLOG</h1>
+    <section class="d-flex flex-row justify-content-between align-items-center bg-black py-3 px-5 shadow-lg" style="width: 100%;">
+        <div class="d-flex flex-row align-items-center gap-5">
+            <a href="{% url 'homepage' %}" class="fs-2 btn btn-dark"><i class="bi bi-house-door text-white"></i></a>
+            <h1 class="font-monospace" style="color: #39ff14">BLOG</h1>
+        </div>
+        
         <form>
             {% csrf_token %}
-            <input type="text" name="query" hx-target="#maincontent" hx-swap="innerHTML"
-                hx-trigger="input changed delay:500ms" hx-post="{% url 'search' %}"
-                placeholder="Search for an article..." />
+            <div class="input-group rounded-pill" style="background: #606060">
+                <input type="text" class="form-control text-white border-dark border-2 border-start-0 border-bottom-0 border-top-0" name="query" hx-target="#maincontent"
+                    hx-swap="innerHTML" hx-trigger="input changed delay:500ms" hx-post="{% url 'search' %}"
+                    placeholder="Search for an article...">
+                <button class="input-group-text btn text-white" type="submit"><i class="bi bi-search"></i></button>
+            </div>
         </form>
     </section>
     <div class="container">

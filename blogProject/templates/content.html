@@ -6,7 +6,7 @@
         {% csrf_token %}
         <input name="comment" class="form-control" placeholder="Leave a comment..." />
         <input name="article_id " type="hidden" value="{{ article.id }}" id="article_id" />
-        <button class="btn btn-primary rounded-4" hx-post="{% url 'savedComment' article.id %}" hx-target="#allComments"
+        <button class="btn btn-success rounded-4" hx-post="{% url 'savedComment' article.id %}" hx-target="#allComments"
             hx-swap="innerHTML">Submit</button>
     </form>
 
