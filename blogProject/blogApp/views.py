@@ -3,6 +3,9 @@ from .models import Article, Comment
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
 from django.shortcuts import redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
 # Create your views here.
 def Homepage(request):
@@ -61,3 +64,8 @@ def deleteArticle(request, id):
         article_instance.delete()
         return redirect("homepage")
     return render(request, "deleteArticle.html", {"article" : article_instance})
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "signup.html"
