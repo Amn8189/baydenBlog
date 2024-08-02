@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 # Create your models here.
 
@@ -22,6 +23,9 @@ class Article(models.Model):
 
     class Meta:
         ordering = ['publish_date']
+        
+    def get_absolute_url(self):
+        return reverse('article', args=[str(self.id)])
 
     def __str__(self):
         return self.title

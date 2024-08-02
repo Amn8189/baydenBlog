@@ -10,6 +10,7 @@ class CustomAdmin(UserAdmin):
     add_form = AuthorCreationForm
     form = AuthorChangeForm
     model = Author
+    list_display = ['username']
     
 admin.site.register(Author, CustomAdmin)
 

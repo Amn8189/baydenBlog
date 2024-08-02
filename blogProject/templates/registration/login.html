@@ -1,8 +1,12 @@
 {% include "base.html" %}
 {% block content %}
 
-{% csrf_token %}
-{{ form.as_p }}
+<form>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Login</button>
+    {{ form.errors }}
+</form>
 
 
 {% endblock content %}

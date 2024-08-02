@@ -19,8 +19,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.sitemaps.views import sitemap 
+from blogApp.sitemaps import ArticleSiteMap
+
+sitemaps = {
+    "articles" : ArticleSiteMap,
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blogApp.urls')),
-    path('users/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

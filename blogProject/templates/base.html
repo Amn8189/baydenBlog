@@ -24,7 +24,7 @@
         <form>
             {% csrf_token %}
             <div class="input-group rounded-pill" style="background: #606060">
-                <input type="text" class="form-control text-white border-dark border-2 border-start-0 border-bottom-0 border-top-0" name="query" hx-target="#maincontent"
+                <input type="text" class="form-control border-dark border-2 border-start-0 border-bottom-0 border-top-0" name="query" hx-target="#maincontent"
                     hx-swap="innerHTML" hx-trigger="input changed delay:500ms" hx-post="{% url 'search' %}"
                     placeholder="Search for an article...">
                 <button class="input-group-text btn text-white" type="submit"><i class="bi bi-search"></i></button>
