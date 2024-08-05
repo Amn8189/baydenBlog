@@ -11,7 +11,7 @@ class Author(AbstractUser):
     age = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.username
 
 class Article(models.Model):
     title = models.CharField(max_length=50)
